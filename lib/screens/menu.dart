@@ -49,6 +49,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Menu Sushi"),
+        backgroundColor: const Color(0xFFFFA07A), // soft salmon orange
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(8),
