@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'detail_order_screen.dart';
+import 'detail_menu.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
