@@ -13,7 +13,7 @@ class Transaksi extends StatelessWidget {
           children: [
             Container(
               height: 100,
-              color: Colors.grey[800], // Placeholder gambar QR / ikon pembayaran
+              color: Colors.grey[800], 
               margin: const EdgeInsets.only(bottom: 20),
             ),
             ElevatedButton(onPressed: () {}, child: const Text("Cash")),
