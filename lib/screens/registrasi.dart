@@ -12,41 +12,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
-  // Fungsi ini akan dipanggil saat tombol "REGISTER" ditekan
   void _register() {
-    // Ambil input dari user
     String username = _usernameController.text;
     String password = _passwordController.text;
     String confirmPassword = _confirmPasswordController.text;
 
-    // Lakukan validasi sederhana
     if (username.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Semua field harus diisi')),
       );
-      return; // Hentikan fungsi jika ada field yang kosong
+      return;
     }
 
     if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Password dan Konfirmasi Password tidak cocok')),
       );
-      return; // Hentikan fungsi jika password tidak cocok
+      return;
     }
 
-    // --- LOGIKA PENYIMPANAN DATA ---
-    // Di dunia nyata, di sinilah Anda akan mengirim data (username, password)
-    // ke server atau menyimpannya di database lokal.
-    //
-    // Untuk simulasi ini, kita anggap registrasi berhasil.
-    // ---------------------------------
 
-    // Tampilkan pesan sukses
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Registrasi berhasil! Silakan login.')),
     );
 
-    // Kembali ke halaman Login setelah jeda singkat agar user bisa membaca pesan
     Future.delayed(const Duration(seconds: 1), () {
       if (mounted) {
         Navigator.pop(context);
@@ -56,7 +45,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    // Bersihkan controller saat widget tidak lagi digunakan untuk mencegah kebocoran memori
     _usernameController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -70,11 +58,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header Oranye Melengkung yang sama
             ClipPath(
-              clipper: WaveClipper(), // Menggunakan clipper yang sama dari login
+              clipper: WaveClipper(),
               child: Container(
-                height: 220, // Sedikit lebih pendek agar pas
+                height: 220,
                 width: double.infinity,
                 color: Colors.deepOrange,
                 child: const Center(
@@ -90,42 +77,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            // Form Registrasi
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Label Username
                   const Text("USERNAME", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 8),
-                  // TextField Username
                   TextField(
                     controller: _usernameController,
                     decoration: _inputDecoration(),
                   ),
                   const SizedBox(height: 20),
-                  // Label Password
                   const Text("PASSWORD", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 8),
-                  // TextField Password
                   TextField(
                     controller: _passwordController,
                     obscureText: true,
                     decoration: _inputDecoration(),
                   ),
                   const SizedBox(height: 20),
-                  // Label Konfirmasi Password
                   const Text("CONFIRM PASSWORD", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 8),
-                  // TextField Konfirmasi Password
                   TextField(
                     controller: _confirmPasswordController,
                     obscureText: true,
                     decoration: _inputDecoration(),
                   ),
                   const SizedBox(height: 30),
-                  // Tombol Register
                   ElevatedButton(
                     onPressed: _register,
                     style: ElevatedButton.styleFrom(
@@ -138,10 +117,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: const Text("REGISTER", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   ),
                   const SizedBox(height: 40),
-                  // Teks untuk kembali ke Halaman Login
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context); // Cukup kembali ke layar sebelumnya (Login)
+                      Navigator.pop(context);
                     },
                     child: RichText(
                       textAlign: TextAlign.center,
@@ -166,7 +144,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  // Helper method untuk menghindari duplikasi kode styling
   InputDecoration _inputDecoration() {
     return InputDecoration(
       filled: true,
@@ -180,8 +157,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
-// Anda bisa meletakkan clipper ini di file terpisah agar bisa diimpor,
-// tapi untuk kemudahan, kita salin saja di sini.
 class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
