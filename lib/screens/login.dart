@@ -18,13 +18,13 @@ class _LoginScreenState extends State<LoginScreen> {
     String password = _passwordController.text;
 
     if (username.isNotEmpty && password.isNotEmpty) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const SelectionScreen()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Username and Password are required')),
+        const SnackBar(content: Text('Username dan Password harus diisi')),
       );
     }
   }
@@ -39,48 +39,115 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
+      backgroundColor: const Color(0xFFFDFDFD), 
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CircleAvatar(radius: 40, backgroundColor: Colors.grey),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _usernameController,
-              decoration: const InputDecoration(labelText: 'Username'),
+            ClipPath(
+              clipper: WaveClipper(),
+              child: Container(
+                height: 250,
+                width: double.infinity,
+                color: Colors.deepOrange,
+                child: const Center(
+                  child: Text(
+                    "LOGIN",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                ),
+              ),
             ),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            const SizedBox(height: 20),
-            Center(
+            // Form Login
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TextButton(
+                  const Text(
+                    "USERNAME",
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 12.0),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "PASSWORD",
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 12.0),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
                     onPressed: _login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey[300],
+                      foregroundColor: Colors.black87,
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      elevation: 0, 
+                    ),
                     child: const Text(
-                      "LOGIN",
+                      "Login",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue,
                       ),
                     ),
                   ),
+                  const SizedBox(height: 50),
                   GestureDetector(
                     onTap: _goToRegister,
                     child: RichText(
-                      text: TextSpan(
-                        text: "Don't have an account? ",
-                        style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(
+                        text: "Belum punya akun? ",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 14,
+                        ),
                         children: [
                           TextSpan(
-                            text: "Registrasi",
-                            style: const TextStyle(color: Colors.blue),
+                            text: "register",
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -93,5 +160,31 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+}
+
+class WaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 50); 
+    var firstControlPoint = Offset(size.width / 4, size.height);
+    var firstEndPoint = Offset(size.width / 2, size.height - 30);
+    var secondControlPoint = Offset(size.width * 3 / 4, size.height - 80);
+    var secondEndPoint = Offset(size.width, size.height - 40);
+
+    path.quadraticBezierTo(
+        firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(
+        secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+
+    path.lineTo(size.width, 0); // Garis ke kanan atas
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
