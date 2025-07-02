@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'detail_transaksi.dart';
+import 'transaksi.dart';
 
 class OrderDetailScreen extends StatelessWidget {
   final Map<String, dynamic> selectedMenu;
@@ -25,7 +25,7 @@ class OrderDetailScreen extends StatelessWidget {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => DetailTransaksi()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => Transaksi()));
               },
               child: const Text("Bayar"),
             ),
