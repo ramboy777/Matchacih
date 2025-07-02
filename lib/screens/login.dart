@@ -62,7 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            // Form Login
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               child: Column(
