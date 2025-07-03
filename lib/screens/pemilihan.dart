@@ -14,13 +14,12 @@ class SelectionScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // LOGO DI ATAS
             Center(
               child: SizedBox(
                 width: 120,
                 height: 120,
                 child: Image.asset(
-                  'assets/images/logo.png', // Ganti sesuai nama logo
+                  'assets/img/1.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -28,7 +27,6 @@ class SelectionScreen extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // DINE IN
             const Text(
               "DINE IN",
               textAlign: TextAlign.center,
@@ -49,7 +47,6 @@ class SelectionScreen extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // TAKE AWAY
             const Text(
               "TAKE AWAY",
               textAlign: TextAlign.center,

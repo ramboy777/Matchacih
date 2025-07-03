@@ -19,7 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     if (username.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Semua field harus diisi')),
+        const SnackBar(content: Text('Tolong isi Username, Password, dan Konfirmasi Password')),
       );
       return;
     }
