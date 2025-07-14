@@ -32,12 +32,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
     Navigator.push(context, MaterialPageRoute(builder: (_) => const MenuScreen()));
   }
 
-<<<<<<< HEAD
-=======
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
-
->>>>>>> menu
   @override
   Widget build(BuildContext context) {
     return Scaffold(
