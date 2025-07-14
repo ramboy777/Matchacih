@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import '../models/menu_card.dart';
-import 'detail_menu.dart';
+
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -11,7 +10,7 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  static const Color mainGreen = Color(0xFF74A12E);
+  static const Color mainOrange = Color.fromARGB(255, 255, 87, 34);
 
   final List<Map<String, dynamic>> menuItems = [
     {
@@ -190,16 +189,13 @@ class _MenuScreenState extends State<MenuScreen> {
     },
   ];
 
+
   final Map<String, int> cart = {};
 
   void _addToCart(String title) {
     setState(() {
       cart[title] = (cart[title] ?? 0) + 1;
     });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$title ditambahkan ke keranjang')),
-    );
   }
 
   void _removeFromCart(String title) {
@@ -211,21 +207,18 @@ class _MenuScreenState extends State<MenuScreen> {
     });
   }
 
-  void _goToOrderDetail(Map<String, dynamic> selectedItem) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => OrderDetailScreen(selectedMenu: {
-          'title': selectedItem['title'],
-          'price': selectedItem['price'],
-          'image': selectedItem['image'],
-        }),
-      ),
-    );
-  }
-
   int _totalItemInCart() {
     return cart.values.fold(0, (sum, item) => sum + item);
+  }
+
+  int _totalHarga() {
+    int total = 0;
+    for (var item in menuItems) {
+      final title = item['title'];
+      final jumlah = cart[title] ?? 0;
+      total += jumlah * (item['price'] as int? ?? 0);
+    }
+    return total;
   }
 
   @override
@@ -233,7 +226,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F4EB),
       appBar: AppBar(
-        backgroundColor: mainGreen,
+        backgroundColor: Colors.deepOrange,
         elevation: 6,
         shadowColor: Colors.black.withOpacity(0.3),
         title: const Text(
@@ -253,7 +246,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 if (_totalItemInCart() > 0)
                   CircleAvatar(
                     radius: 8,
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.deepOrange,
                     child: Text(
                       '${_totalItemInCart()}',
                       style: const TextStyle(color: Colors.white, fontSize: 10),
@@ -264,31 +257,66 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
         ],
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(12),
-        itemCount: menuItems.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.68,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-        ),
-        itemBuilder: (context, index) {
-          final item = menuItems[index];
-          final title = item['title'];
-          final quantity = cart[title] ?? 0;
+      body: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.all(12),
+              itemCount: menuItems.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.68,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+              ),
+              itemBuilder: (context, index) {
+                final item = menuItems[index];
+                final title = item['title'];
+                final quantity = cart[title] ?? 0;
 
-          return MenuCard(
-            title: item['title'],
-            price: item['price'],
-            image: item['image'],
-            description: item['description'],
-            quantity: quantity,
-            onAdd: () => _addToCart(title),
-            onRemove: () => _removeFromCart(title),
-            onViewDetail: () => _goToOrderDetail(item),
-          );
-        },
+                return MenuCard(
+                  title: item['title'],
+                  price: item['price'],
+                  image: item['image'],
+                  description: item['description'],
+                  quantity: quantity,
+                  onAdd: () => _addToCart(title),
+                  onRemove: () => _removeFromCart(title), onViewDetail: () {  },
+                );
+              },
+            ),
+          ),
+          if (_totalItemInCart() > 0)
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(top: BorderSide(color: Colors.grey.shade300)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Total: Rp ${_totalHarga().toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => '.')}",
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: navigasi ke halaman checkout/reservasi
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepOrange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      child: Text("Pesan Sekarang", style: TextStyle(fontSize: 16)),
+                    ),
+                  )
+                ],
+              ),
+            )
+        ],
       ),
     );
   }
