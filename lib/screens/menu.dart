@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import '../models/menu_item.dart';
+=======
+>>>>>>> main
 import 'detail_menu.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -10,6 +13,7 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+<<<<<<< HEAD
   static const Color mainGreen = Color(0xFF74A12E);
 
   final List<MenuItem> menuItems = [
@@ -36,10 +40,35 @@ class _MenuScreenState extends State<MenuScreen> {
       if (cart[item] != null && cart[item]! > 0) {
         cart[item] = cart[item]! - 1;
         if (cart[item] == 0) cart.remove(item);
+=======
+  final List<Map<String, dynamic>> menuItems = [
+    {"title": "Sushi 1", "price": 90000, "image": "https://via.placeholder.com/100"},
+    {"title": "Sushi 2", "price": 100000, "image": "https://via.placeholder.com/100"},
+    {"title": "Sushi 3", "price": 110000, "image": "https://via.placeholder.com/100"},
+    {"title": "Sushi 4", "price": 120000, "image": "https://via.placeholder.com/100"},
+  ];
+
+  final Map<String, int> cart = {}; // item -> jumlah
+
+  void _addToCart(String itemName) {
+    setState(() {
+      cart[itemName] = (cart[itemName] ?? 0) + 1;
+    });
+  }
+
+  void _removeFromCart(String itemName) {
+    setState(() {
+      if (cart[itemName] != null && cart[itemName]! > 0) {
+        cart[itemName] = cart[itemName]! - 1;
+        if (cart[itemName] == 0) {
+          cart.remove(itemName);
+        }
+>>>>>>> main
       }
     });
   }
 
+<<<<<<< HEAD
   void _goToOrderDetail(MenuItem selectedItem) {
     Navigator.push(
       context,
@@ -49,18 +78,29 @@ class _MenuScreenState extends State<MenuScreen> {
           'price': selectedItem.price,
           'image': selectedItem.image,
         }),
+=======
+  void _goToOrderDetail(Map<String, dynamic> selectedMenu) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => OrderDetailScreen(selectedMenu: selectedMenu),
+>>>>>>> main
       ),
     );
   }
 
+<<<<<<< HEAD
   int _totalItemInCart() {
     return cart.values.fold(0, (sum, item) => sum + item);
   }
 
+=======
+>>>>>>> main
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD
         backgroundColor: mainGreen,
         title: const Text("Menu Sushi"),
         actions: [
@@ -153,10 +193,65 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 ),
               ],
+=======
+        title: const Text("Menu Sushi"),
+      ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(8),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 4,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+        ),
+        itemCount: menuItems.length,
+        itemBuilder: (context, index) {
+          final item = menuItems[index];
+          final itemCount = cart[item['title']] ?? 0;
+
+          return Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: InkWell(
+              onTap: () => _goToOrderDetail(item), // <<< buka detail satu item
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Image.network(item['image'], width: 80, height: 80, fit: BoxFit.cover),
+                        const SizedBox(height: 8),
+                        Text(item['title'], style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                        Text("Rp ${item['price'] ~/ 1000}K", style: const TextStyle(color: Colors.amber, fontSize: 12)),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () => _removeFromCart(item['title']),
+                          icon: const Icon(Icons.remove),
+                        ),
+                        Text('$itemCount'),
+                        IconButton(
+                          onPressed: () => _addToCart(item['title']),
+                          icon: const Icon(Icons.add),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+>>>>>>> main
             ),
           );
         },
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
