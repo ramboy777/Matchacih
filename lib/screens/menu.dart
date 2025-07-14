@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -6,6 +8,9 @@ import '../models/menu_item.dart';
 =======
 >>>>>>> main
 >>>>>>> origin/menu
+=======
+import '../models/menu_card.dart';
+>>>>>>> menu
 import 'detail_menu.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -17,31 +22,205 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> menu
   static const Color mainGreen = Color(0xFF74A12E);
 
-  final List<MenuItem> menuItems = [
-    MenuItem(title: "Sushi 1", price: 90000, image: "https://via.placeholder.com/150"),
-    MenuItem(title: "Sushi 2", price: 100000, image: "https://via.placeholder.com/150"),
-    MenuItem(title: "Sushi 3", price: 110000, image: "https://via.placeholder.com/150"),
-    MenuItem(title: "Sushi 4", price: 120000, image: "https://via.placeholder.com/150"),
+  final List<Map<String, dynamic>> menuItems = [
+    {
+      'title': "7-Piece Kappa's Choice Regular Set",
+      'price': 81000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Medium-Fatty Tuna, Tuna, Squid, Whelk, Yellowtail, Salmon, Flounder Fin"
+    },
+    {
+      'title': "7-Piece Sushi",
+      'price': 192000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Bonito, Abalone, Octopus, Urchin, Shrimp, Sea Eel"
+    },
+    {
+      'title': "Albacore Tuna",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Ikan Tuna Albacore segar"
+    },
+    {
+      'title': "Bering Sea Cockle",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Kerang manis saus kecap dan wijen"
+    },
+    {
+      'title': "Fresh Octopus",
+      'price': 19000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Gurita segar dengan cita rasa otentik"
+    },
+    {
+      'title': "Japanese Omelette",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Telur gulung khas Jepang"
+    },
+    {
+      'title': "Popular Platter",
+      'price': 89000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Tuna, Albacore, Yellowtail, Salmon, Shrimp, Whelk"
+    },
+    {
+      'title': "Pounded Tuna",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Tuna cincang segar"
+    },
+    {
+      'title': "Salmon with Avocado",
+      'price': 21000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Salmon dengan alpukat creamy"
+    },
+    {
+      'title': "Scallop",
+      'price': 21000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Kerang segar dari laut utara"
+    },
+    {
+      'title': "Shrimp",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Udang segar lezat"
+    },
+    {
+      'title': "Sushi Wrap with Tuna",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Wrap tuna, daikon, perilla (dine-in only)"
+    },
+    {
+      'title': "Tuna and Salmon",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Dua kombinasi favorit: tuna dan salmon"
+    },
+    {
+      'title': "Tuna and Shrimp Sushi",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Tuna dan udang segar"
+    },
+    {
+      'title': "Tuna",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Ikan tuna segar"
+    },
+    {
+      'title': "Salmon Roe",
+      'price': 39000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Telur salmon kualitas tinggi"
+    },
+    {
+      'title': "Shrimp Tempura Roll",
+      'price': 19000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Gulungan udang goreng tempura"
+    },
+    {
+      'title': "Soy Sauce Ramen",
+      'price': 43000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Ramen kuah soyu klasik"
+    },
+    {
+      'title': "Hakata Tonkotsu Ramen",
+      'price': 59000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Ramen Hakata dengan acar pedas"
+    },
+    {
+      'title': "Seaweed Root and Natto",
+      'price': 11000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Akar rumput laut dengan natto"
+    },
+    {
+      'title': "Draft Beer",
+      'price': 99000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Bir dingin segar langsung dari tap"
+    },
+    {
+      'title': "Alcohol-Free Cassis Orange",
+      'price': 49000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Minuman buah cassis tanpa alkohol"
+    },
+    {
+      'title': "Iced Coffee",
+      'price': 19000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Kopi dingin menyegarkan"
+    },
+    {
+      'title': "Mango Drink",
+      'price': 29000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Minuman mangga manis"
+    },
+    {
+      'title': "Masumi Dry Gold (Sake)",
+      'price': 94000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Sake khas Jepang, tersedia di Jepang Timur"
+    },
+    {
+      'title': "Premium Set (5 serving)",
+      'price': 915000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Set premium lengkap untuk 5 orang"
+    },
+    {
+      'title': "Premium Set (3 serving)",
+      'price': 549000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Set premium untuk 3 orang"
+    },
+    {
+      'title': "Happy Set (2 servings)",
+      'price': 254000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Paket happy untuk berdua"
+    },
+    {
+      'title': "Happy Set (one serving)",
+      'price': 91000,
+      'image': "https://via.placeholder.com/150",
+      'description': "Set lengkap untuk satu orang"
+    },
   ];
 
-  final Map<MenuItem, int> cart = {};
+  final Map<String, int> cart = {};
 
-  void _addToCart(MenuItem item) {
+  void _addToCart(String title) {
     setState(() {
-      cart[item] = (cart[item] ?? 0) + 1;
+      cart[title] = (cart[title] ?? 0) + 1;
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('${item.title} ditambahkan ke keranjang')),
+      SnackBar(content: Text('$title ditambahkan ke keranjang')),
     );
   }
 
-  void _removeFromCart(MenuItem item) {
+  void _removeFromCart(String title) {
     setState(() {
+<<<<<<< HEAD
       if (cart[item] != null && cart[item]! > 0) {
         cart[item] = cart[item]! - 1;
         if (cart[item] == 0) cart.remove(item);
@@ -73,22 +252,32 @@ class _MenuScreenState extends State<MenuScreen> {
 =======
 >>>>>>> main
 >>>>>>> origin/menu
+=======
+      if (cart[title] != null && cart[title]! > 0) {
+        cart[title] = cart[title]! - 1;
+        if (cart[title] == 0) cart.remove(title);
+>>>>>>> menu
       }
     });
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
   void _goToOrderDetail(MenuItem selectedItem) {
+=======
+  void _goToOrderDetail(Map<String, dynamic> selectedItem) {
+>>>>>>> menu
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (_) => OrderDetailScreen(selectedMenu: {
-          'title': selectedItem.title,
-          'price': selectedItem.price,
-          'image': selectedItem.image,
+          'title': selectedItem['title'],
+          'price': selectedItem['price'],
+          'image': selectedItem['image'],
         }),
+<<<<<<< HEAD
 =======
 >>>>>>> origin/menu
   void _goToOrderDetail(Map<String, dynamic> selectedMenu) {
@@ -100,29 +289,49 @@ class _MenuScreenState extends State<MenuScreen> {
 =======
 >>>>>>> main
 >>>>>>> origin/menu
+=======
+>>>>>>> menu
       ),
     );
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> menu
   int _totalItemInCart() {
     return cart.values.fold(0, (sum, item) => sum + item);
   }
 
+<<<<<<< HEAD
 =======
 >>>>>>> main
 >>>>>>> origin/menu
+=======
+>>>>>>> menu
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF8F4EB),
       appBar: AppBar(
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> menu
         backgroundColor: mainGreen,
-        title: const Text("Menu Sushi"),
+        elevation: 6,
+        shadowColor: Colors.black.withOpacity(0.3),
+        title: const Text(
+          "Menu Sushi",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.2,
+          ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
@@ -149,14 +358,16 @@ class _MenuScreenState extends State<MenuScreen> {
         itemCount: menuItems.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 2 / 3,
+          childAspectRatio: 0.68,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
         itemBuilder: (context, index) {
           final item = menuItems[index];
-          final itemCount = cart[item] ?? 0;
+          final title = item['title'];
+          final quantity = cart[title] ?? 0;
 
+<<<<<<< HEAD
           return Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             elevation: 4,
@@ -269,13 +480,24 @@ class _MenuScreenState extends State<MenuScreen> {
 >>>>>>> main
 >>>>>>> origin/menu
             ),
+=======
+          return MenuCard(
+            title: item['title'],
+            price: item['price'],
+            image: item['image'],
+            description: item['description'],
+            quantity: quantity,
+            onAdd: () => _addToCart(title),
+            onRemove: () => _removeFromCart(title),
+            onViewDetail: () => _goToOrderDetail(item),
+>>>>>>> menu
           );
         },
       ),
     );
   }
-<<<<<<< HEAD
 }
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 }
@@ -283,3 +505,6 @@ class _MenuScreenState extends State<MenuScreen> {
 }
 >>>>>>> main
 >>>>>>> origin/menu
+=======
+
+>>>>>>> menu
