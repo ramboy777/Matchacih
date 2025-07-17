@@ -67,7 +67,7 @@ class Transaksi extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const TransaksiEWallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => TransaksiEWallet()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'menu.dart';
 import 'reservasi.dart';
 
 class SelectionScreen extends StatelessWidget {
@@ -11,9 +12,21 @@ class SelectionScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Center(
+              child: SizedBox(
+                width: 120,
+                height: 120,
+                child: Image.asset(
+                  'assets/img/1.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
             const Text(
               "DINE IN",
               textAlign: TextAlign.center,
@@ -22,7 +35,8 @@ class SelectionScreen extends StatelessWidget {
             const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const ReservationScreen()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
@@ -30,7 +44,9 @@ class SelectionScreen extends StatelessWidget {
               ),
               child: const Text("Pilih DINE IN", style: TextStyle(fontSize: 16)),
             ),
+
             const SizedBox(height: 30),
+
             const Text(
               "TAKE AWAY",
               textAlign: TextAlign.center,
@@ -39,7 +55,8 @@ class SelectionScreen extends StatelessWidget {
             const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () {
-                //Navigator.push(context, MaterialPageRoute(builder: (_) => const MenuScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const MenuScreen()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,

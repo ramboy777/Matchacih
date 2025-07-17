@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_app/screens/transaksi_sukses_e_wallet.dart';
-
+import 'package:sushi_app/splash_screen/splash_screen_e_wallet.dart';
 
 class TransaksiEWallet extends StatelessWidget {
   const TransaksiEWallet({super.key});
@@ -78,7 +77,7 @@ class TransaksiEWallet extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => PembayaranSukses(metode: label),
+              builder: (_) => PembayaranSplash(metode: label),
             ),
           );
         },
