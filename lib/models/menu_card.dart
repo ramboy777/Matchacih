@@ -8,7 +8,6 @@ class MenuCard extends StatelessWidget {
   final int quantity;
   final VoidCallback onAdd;
   final VoidCallback onRemove;
-  final VoidCallback onViewDetail;
 
   const MenuCard({
     super.key,
@@ -19,80 +18,47 @@ class MenuCard extends StatelessWidget {
     required this.quantity,
     required this.onAdd,
     required this.onRemove,
-    required this.onViewDetail,
   });
 
   @override
   Widget build(BuildContext context) {
-    const mainGreen = Color(0xFF74A12E);
-
     return Card(
+      elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 4,
-      shadowColor: Colors.black.withOpacity(0.1),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: Image.network(
-              image,
-              height: 100,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image),
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(image, height: 100, width: 100, fit: BoxFit.cover),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Rp ${price.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}',
-                  style: const TextStyle(color: mainGreen, fontSize: 14),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 12, color: Colors.black87),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: onRemove,
-                      icon: const Icon(Icons.remove_circle_outline),
-                      color: mainGreen,
-                    ),
-                    Text('$quantity'),
-                    IconButton(
-                      onPressed: onAdd,
-                      icon: const Icon(Icons.add_circle_outline),
-                      color: mainGreen,
-                    ),
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: onViewDetail,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: mainGreen,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text("Rp ${price.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (m) => '.')}",
+                      style: const TextStyle(fontSize: 14)),
+                  const SizedBox(height: 4),
+                  Text(description, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12)),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(onPressed: quantity > 0 ? onRemove : null, icon: const Icon(Icons.remove)),
+                      Text('$quantity'),
+                      IconButton(onPressed: onAdd, icon: const Icon(Icons.add)),
+                    ],
                   ),
-                  child: const Text("Lihat Detail"),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-
