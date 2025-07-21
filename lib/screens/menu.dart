@@ -300,7 +300,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   ElevatedButton(
                     onPressed: () {
-                      // TODO: navigasi ke halaman checkout/reservasi
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepOrange,
