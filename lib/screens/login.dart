@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pemilihan.dart';
 import 'registrasi.dart';
+import 'package:sushi_app/splash_screen/splash_screen_login.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,8 +20,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (username.isNotEmpty && password.isNotEmpty) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const SelectionScreen()),
+        MaterialPageRoute(builder: (_) => const SplashScreenLogin()),
       );
+
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Username dan Password harus diisi')),
@@ -39,7 +40,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       backgroundColor: const Color(0xFFFDFDFD), 
+=======
+      backgroundColor: const Color(0xFFFDFDFD),
+>>>>>>> origin/splash_screen
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -119,7 +124,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
+<<<<<<< HEAD
                       elevation: 0, 
+=======
+                      elevation: 0,
+>>>>>>> origin/splash_screen
                     ),
                     child: const Text(
                       "Login",
@@ -166,7 +175,11 @@ class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
+<<<<<<< HEAD
     path.lineTo(0, size.height - 50); 
+=======
+    path.lineTo(0, size.height - 50);
+>>>>>>> origin/splash_screen
     var firstControlPoint = Offset(size.width / 4, size.height);
     var firstEndPoint = Offset(size.width / 2, size.height - 30);
     var secondControlPoint = Offset(size.width * 3 / 4, size.height - 80);

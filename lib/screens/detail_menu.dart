@@ -25,7 +25,7 @@ class OrderDetailScreen extends StatelessWidget {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => Transaksi()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => Transaksi(selectedMenu: selectedMenu)));
               },
               child: const Text("Bayar"),
             ),

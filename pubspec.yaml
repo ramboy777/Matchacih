@@ -68,7 +68,12 @@ flutter:
   uses-material-design: true
 
   assets:
+<<<<<<< HEAD
   - assets/img/
+=======
+     - assets/img/dana.png
+     - assets/img/shoppe.png
+>>>>>>> origin/splash_screen
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

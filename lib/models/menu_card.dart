@@ -17,7 +17,11 @@ class MenuCard extends StatelessWidget {
     required this.description,
     required this.quantity,
     required this.onAdd,
+<<<<<<< HEAD
     required this.onRemove,
+=======
+    required this.onRemove, required Null Function() onViewDetail,
+>>>>>>> origin/splash_screen
   });
 
   @override
@@ -27,11 +31,16 @@ class MenuCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(8),
+<<<<<<< HEAD
         child: Row(
+=======
+        child: Column(
+>>>>>>> origin/splash_screen
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
+<<<<<<< HEAD
               child: Image.network(image, height: 100, width: 100, fit: BoxFit.cover),
             ),
             const SizedBox(width: 12),
@@ -55,6 +64,23 @@ class MenuCard extends StatelessWidget {
                   ),
                 ],
               ),
+=======
+              child: Image.network(image, height: 100, width: double.infinity, fit: BoxFit.cover),
+            ),
+            const SizedBox(height: 8),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text("Rp ${price.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (m) => '.')}"),
+            const SizedBox(height: 4),
+            Text(description, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12)),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(onPressed: onRemove, icon: const Icon(Icons.remove)),
+                Text('$quantity'),
+                IconButton(onPressed: onAdd, icon: const Icon(Icons.add)),
+              ],
+>>>>>>> origin/splash_screen
             ),
           ],
         ),
