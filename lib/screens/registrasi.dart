@@ -1,4 +1,6 @@
+// 1. Tambahkan import Supabase dan ubah controller
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -8,18 +10,23 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final _supabase = Supabase.instance.client;
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController(); // Tambahkan controller email
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  bool _isLoading = false;
 
-  void _register() {
-    String username = _usernameController.text;
-    String password = _passwordController.text;
-    String confirmPassword = _confirmPasswordController.text;
+  // 2. Modifikasi fungsi _register
+  Future<void> _register() async {
+    final username = _usernameController.text.trim();
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+    final confirmPassword = _confirmPasswordController.text.trim();
 
-    if (username.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+    if (username.isEmpty || email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Tolong isi Username, Password, dan Konfirmasi Password')),
+        const SnackBar(content: Text('Semua kolom harus diisi')),
       );
       return;
     }
@@ -31,21 +38,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
+    setState(() => _isLoading = true);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Registrasi berhasil! Silakan login.')),
-    );
+    try {
+      // Gunakan Supabase signUp. Username dimasukkan ke dalam metadata.
+      await _supabase.auth.signUp(
+        email: email,
+        password: password,
+        data: {'username': username}, // Ini penting untuk trigger di database
+      );
 
-    Future.delayed(const Duration(seconds: 1), () {
       if (mounted) {
-        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Registrasi berhasil! Cek email Anda untuk konfirmasi.')),
+        );
+        Navigator.pop(context); // Kembali ke halaman login
       }
-    });
+    } on AuthException catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error.message),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Terjadi kesalahan tak terduga.'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
+    }
+
+    if (mounted) {
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
   void dispose() {
     _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -59,24 +96,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           children: [
             ClipPath(
-              clipper: WaveClipper(),
-              child: Container(
-                height: 220,
-                width: double.infinity,
-                color: Colors.deepOrange,
-                child: const Center(
-                  child: Text(
-                    "REGISTER",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                clipper: WaveClipper(),
+                child: Container(
+                    height: 220,
+                    width: double.infinity,
+                    color: Colors.deepOrange,
+                    child: const Center(child: Text("REGISTER", style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 2.0))))),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               child: Column(
@@ -87,6 +112,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   TextField(
                     controller: _usernameController,
                     decoration: _inputDecoration(),
+                  ),
+                  const SizedBox(height: 20),
+                  // 3. Tambahkan TextField untuk Email
+                  const Text("EMAIL", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: _inputDecoration(hint: 'sushi@love.com'),
                   ),
                   const SizedBox(height: 20),
                   const Text("PASSWORD", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600)),
@@ -106,35 +140,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
-                    onPressed: _register,
+                    onPressed: _isLoading ? null : _register,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey[300],
-                      foregroundColor: Colors.black87,
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                      elevation: 0,
-                    ),
-                    child: const Text("REGISTER", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        backgroundColor: Colors.grey[300],
+                        foregroundColor: Colors.black87,
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+                        elevation: 0),
+                    child: _isLoading
+                        ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 3))
+                        : const Text("REGISTER", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   ),
                   const SizedBox(height: 40),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                        text: "Sudah punya akun? ",
-                        style: TextStyle(color: Colors.black54, fontSize: 14),
-                        children: [
-                          TextSpan(
-                            text: "Login",
-                            style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: RichText(
+                          textAlign: TextAlign.center,
+                          text: const TextSpan(
+                              text: "Sudah punya akun? ",
+                              style: TextStyle(color: Colors.black54, fontSize: 14),
+                              children: [TextSpan(text: "Login", style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold))]))),
                 ],
               ),
             ),
@@ -144,8 +171,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  InputDecoration _inputDecoration() {
+  InputDecoration _inputDecoration({String? hint}) {
     return InputDecoration(
+      hintText: hint,
       filled: true,
       fillColor: Colors.grey[200],
       border: OutlineInputBorder(
@@ -157,6 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
+// ... Class WaveClipper tetap sama ...
 class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -167,10 +196,8 @@ class WaveClipper extends CustomClipper<Path> {
     var secondControlPoint = Offset(size.width * 3 / 4, size.height - 80);
     var secondEndPoint = Offset(size.width, size.height - 40);
 
-    path.quadraticBezierTo(
-        firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
-    path.quadraticBezierTo(
-        secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
 
     path.lineTo(size.width, 0);
     path.close();
