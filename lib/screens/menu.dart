@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:sushi_app/models/menu_card.dart';
-=======
 import 'package:sushi_app/screens/detail_menu.dart';
 import '../models/menu_card.dart';
 
->>>>>>> origin/splash_screen
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -17,37 +13,6 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   static const Color mainOrange = Color.fromARGB(255, 255, 87, 34);
 
-<<<<<<< HEAD
-  final List<String> categories = ["Makan", "Minum", "Bundle"];
-  String selectedCategory = "Makan";
-
-  final List<Map<String, dynamic>> menuItems = [
-    {
-      'title': "Choco Cookie Shake",
-      'price': 29000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Rasa cokelat istimewa untuk menemani hari manis dan penghilang dahaga.",
-      'category': "Minum"
-    },
-    {
-      'title': "Butterscotch Milk Crumble",
-      'price': 29000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Butterscotch dengan paduan caramel, susu dengan sea salt cream dan caramel.",
-      'category': "Minum"
-    },
-    {
-      'title': "Vanilla O' Crumbs",
-      'price': 29000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Perpaduan vanilla, butterscotch dan susu dilengkapi dengan saus caramel juga topping.",
-      'category': "Minum"
-    },
-  ];
-
-  final Map<String, int> cart = {};
-
-=======
   final List<Map<String, dynamic>> menuItems = [
     {
       'title': "7-Piece Kappa's Choice Regular Set",
@@ -228,7 +193,6 @@ class _MenuScreenState extends State<MenuScreen> {
 
   final Map<String, int> cart = {};
 
->>>>>>> origin/splash_screen
   void _addToCart(String title) {
     setState(() {
       cart[title] = (cart[title] ?? 0) + 1;
@@ -260,18 +224,6 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    final filteredItems = menuItems.where((item) => item['category'] == selectedCategory).toList();
-
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8F4EB),
-      appBar: AppBar(
-        backgroundColor: mainOrange,
-        elevation: 6,
-        shadowColor: Colors.black.withOpacity(0.3),
-        title: const Text(
-          "Menu",
-=======
     return Scaffold(
       backgroundColor: const Color(0xFFF8F4EB),
       appBar: AppBar(
@@ -280,7 +232,6 @@ class _MenuScreenState extends State<MenuScreen> {
         shadowColor: Colors.black.withOpacity(0.3),
         title: const Text(
           "Menu Sushi",
->>>>>>> origin/splash_screen
           style: TextStyle(
             fontWeight: FontWeight.w600,
             letterSpacing: 1.2,
@@ -296,100 +247,13 @@ class _MenuScreenState extends State<MenuScreen> {
                 if (_totalItemInCart() > 0)
                   CircleAvatar(
                     radius: 8,
-<<<<<<< HEAD
-                    backgroundColor: mainOrange,
-=======
                     backgroundColor: Colors.deepOrange,
->>>>>>> origin/splash_screen
                     child: Text(
                       '${_totalItemInCart()}',
                       style: const TextStyle(color: Colors.white, fontSize: 10),
                     ),
                   ),
               ],
-<<<<<<< HEAD
-            ),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: categories.map((category) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        selectedCategory = category;
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: selectedCategory == category ? mainOrange : Colors.grey[300],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Text(category),
-                  ),
-                );
-              }).toList(),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(12),
-              itemCount: filteredItems.length,
-              itemBuilder: (context, index) {
-                final item = filteredItems[index];
-                final title = item['title'];
-                final quantity = cart[title] ?? 0;
-
-                return MenuCard(
-                  title: item['title'],
-                  price: item['price'],
-                  image: item['image'],
-                  description: item['description'],
-                  quantity: quantity,
-                  onAdd: () => _addToCart(title),
-                  onRemove: () => _removeFromCart(title),
-                );
-              },
-            ),
-          ),
-          if (_totalItemInCart() > 0)
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(top: BorderSide(color: Colors.grey.shade300)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Cek Keranjang (${_totalItemInCart()} produk)", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  Text("Rp ${_totalHarga().toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => '.')}",
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  ElevatedButton(
-                    onPressed: () {
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: mainOrange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                      child: Text(">", style: TextStyle(fontSize: 16)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-=======
             ),
           ),
         ],
@@ -462,7 +326,6 @@ class _MenuScreenState extends State<MenuScreen> {
                 ],
               ),
             )
->>>>>>> origin/splash_screen
         ],
       ),
     );

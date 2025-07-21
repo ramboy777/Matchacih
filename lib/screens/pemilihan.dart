@@ -36,11 +36,7 @@ class SelectionScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-<<<<<<< HEAD
-                  MaterialPageRoute(builder: (_) => const ReservationScreen()));
-=======
                     MaterialPageRoute(builder: (_) => const ReservationScreen()));
->>>>>>> origin/splash_screen
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
@@ -60,11 +56,7 @@ class SelectionScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-<<<<<<< HEAD
-                  MaterialPageRoute(builder: (_) => const MenuScreen()));
-=======
                     MaterialPageRoute(builder: (_) => const MenuScreen()));
->>>>>>> origin/splash_screen
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,

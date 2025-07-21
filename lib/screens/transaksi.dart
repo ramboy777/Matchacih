@@ -22,12 +22,6 @@ class Transaksi extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-<<<<<<< HEAD
-            Container(
-              height: 100,
-              color: Colors.grey[800], 
-              margin: const EdgeInsets.only(bottom: 20),
-=======
             Card(
               elevation: 3,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -82,7 +76,6 @@ class Transaksi extends StatelessWidget {
                 ),
                 child: const Text("Bayar dengan E-Wallet", style: TextStyle(fontSize: 16)),
               ),
->>>>>>> origin/splash_screen
             ),
           ],
         ),

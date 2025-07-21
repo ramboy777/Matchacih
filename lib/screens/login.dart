@@ -40,11 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-      backgroundColor: const Color(0xFFFDFDFD), 
-=======
       backgroundColor: const Color(0xFFFDFDFD),
->>>>>>> origin/splash_screen
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -124,11 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-<<<<<<< HEAD
-                      elevation: 0, 
-=======
                       elevation: 0,
->>>>>>> origin/splash_screen
                     ),
                     child: const Text(
                       "Login",
@@ -175,11 +167,7 @@ class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-<<<<<<< HEAD
-    path.lineTo(0, size.height - 50); 
-=======
     path.lineTo(0, size.height - 50);
->>>>>>> origin/splash_screen
     var firstControlPoint = Offset(size.width / 4, size.height);
     var firstEndPoint = Offset(size.width / 2, size.height - 30);
     var secondControlPoint = Offset(size.width * 3 / 4, size.height - 80);
