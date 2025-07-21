@@ -282,7 +282,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   description: item['description'],
                   quantity: quantity,
                   onAdd: () => _addToCart(title),
-                  onRemove: () => _removeFromCart(title), onViewDetail: () {  },
+                  onRemove: () => _removeFromCart(title),
                 );
               },
             ),
