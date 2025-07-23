@@ -26,32 +26,53 @@ class MenuCard extends StatelessWidget {
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(10),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(image, height: 100, width: 100, fit: BoxFit.cover),
+              child: Image.asset(
+                image,
+                height: 90,
+                width: 90,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image, size: 90),
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                  Text("Rp ${price.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (m) => '.')}",
-                      style: const TextStyle(fontSize: 14)),
+                  Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                   const SizedBox(height: 4),
-                  Text(description, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12)),
+                  Text(
+                    "Rp ${price.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (m) => '.')}",
+                    style: const TextStyle(fontSize: 14, color: Colors.deepOrange),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 12, color: Colors.black54),
+                  ),
                   const SizedBox(height: 8),
-                  const Spacer(), 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      IconButton(onPressed: quantity > 0 ? onRemove : null, icon: const Icon(Icons.remove)),
+                      IconButton(
+                        icon: const Icon(Icons.remove_circle_outline),
+                        onPressed: quantity > 0 ? onRemove : null,
+                      ),
                       Text('$quantity'),
-                      IconButton(onPressed: onAdd, icon: const Icon(Icons.add)),
+                      IconButton(
+                        icon: const Icon(Icons.add_circle_outline),
+                        onPressed: onAdd,
+                      ),
                     ],
                   ),
                 ],
@@ -62,4 +83,4 @@ class MenuCard extends StatelessWidget {
       ),
     );
   }
-}
+} 

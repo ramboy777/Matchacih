@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _supabase = Supabase.instance.client; // Panggil instance Supabase
+  final _supabase = Supabase.instance.client;
   bool _isLoading = false;
 
   Future<void> _login() async {
