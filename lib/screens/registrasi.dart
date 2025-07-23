@@ -1,4 +1,3 @@
-// 1. Tambahkan import Supabase dan ubah controller
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -12,12 +11,11 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _supabase = Supabase.instance.client;
   final _usernameController = TextEditingController();
-  final _emailController = TextEditingController(); // Tambahkan controller email
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
 
-  // 2. Modifikasi fungsi _register
   Future<void> _register() async {
     final username = _usernameController.text.trim();
     final email = _emailController.text.trim();
