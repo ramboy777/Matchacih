@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart'; // 1. Tambahkan import Supabase
-import 'screens/login.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:sushi_app/screens/auth/login.dart';
+//import 'screens/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

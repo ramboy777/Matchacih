@@ -45,6 +45,7 @@ class MenuCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(description, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12)),
                   const SizedBox(height: 8),
+                  const Spacer(), 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

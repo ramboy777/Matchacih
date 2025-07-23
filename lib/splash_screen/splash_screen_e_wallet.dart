@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_app/screens/transaksi_sukses_e_wallet.dart';
+import 'package:sushi_app/screens/home/transaksi_sukses_e_wallet.dart';
 
 
 class PembayaranSplash extends StatefulWidget {

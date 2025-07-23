@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_app/screens/detail_menu.dart';
-import '../models/menu_card.dart';
+import 'package:sushi_app/screens/home/detail_menu.dart';
+import '../../models/menu_card.dart';
 
 
 class MenuScreen extends StatefulWidget {

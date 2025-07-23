@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_app/screens/transaksi_cash.dart';
-import 'package:sushi_app/screens/transaksi_e_wallet.dart';
+import 'package:sushi_app/screens/home/transaksi_cash.dart';
+import 'package:sushi_app/screens/home/transaksi_e_wallet.dart';
 
 
 class Transaksi extends StatelessWidget {

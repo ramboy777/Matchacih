@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_app/screens/pemilihan.dart';
+import 'package:sushi_app/screens/home/pemilihan.dart';
 
 class SplashScreenLogin extends StatefulWidget {
   const SplashScreenLogin({super.key});

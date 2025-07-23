@@ -39,11 +39,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() => _isLoading = true);
 
     try {
-      // Gunakan Supabase signUp. Username dimasukkan ke dalam metadata.
       await _supabase.auth.signUp(
         email: email,
         password: password,
-        data: {'username': username}, // Ini penting untuk trigger di database
+        data: {'username': username},
       );
 
       if (mounted) {
