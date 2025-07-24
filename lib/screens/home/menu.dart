@@ -28,189 +28,189 @@ class _MenuScreenState extends State<MenuScreen> {
      {
     'title': "7-Piece Kappa's Choice Regular Set",
     'price': 81000,
-    'image': "assets/images/7_piece_kappas_choice_regular_set.png",
+    'image': "assets/img/7_piece_kappas_choice_regular_set.png",
     'description': "Medium-Fatty Tuna, Tuna, Squid, Whelk, Yellowtail, Salmon, Flounder Fin",
     'category': "Bundle"
   },
   {
     'title': "7-Piece Sushi",
     'price': 192000,
-    'image': "assets/images/7_piece_sushi.png",
+    'image': "assets/img/7_piece_sushi.png",
     'description': "Bonito, Abalone, Octopus, Urchin, Shrimp, Sea Eel",
     'category': "Bundle"
   },
   {
     'title': "Albacore Tuna",
     'price': 11000,
-    'image': "assets/images/albacore_tuna.png",
+    'image': "assets/img/albacore_tuna.png",
     'description': "Ikan Tuna Albacore segar",
     'category': "Makan"
   },
   {
     'title': "Bering Sea Cockle",
     'price': 11000,
-    'image': "assets/images/bering_sea_cockle.png",
+    'image': "assets/img/bering_sea_cockle.png",
     'description': "Kerang manis saus kecap dan wijen",
     'category': "Makan"
   },
   {
     'title': "Fresh Octopus",
     'price': 19000,
-    'image': "assets/images/fresh_octopus.png",
+    'image': "assets/img/fresh_octopus.png",
     'description': "Gurita segar dengan cita rasa otentik",
     'category': "Makan"
   },
   {
     'title': "Japanese Omelette",
     'price': 11000,
-    'image': "assets/images/japanese_omelette.png",
+    'image': "assets/img/japanese_omelette.png",
     'description': "Telur gulung khas Jepang",
     'category': "Makan"
   },
   {
     'title': "Popular Platter",
     'price': 89000,
-    'image': "assets/images/popular_platter.png",
+    'image': "assets/img/popular_platter.png",
     'description': "Tuna, Albacore, Yellowtail, Salmon, Shrimp, Whelk",
     'category': "Bundle"
   },
   {
     'title': "Pounded Tuna",
     'price': 11000,
-    'image': "assets/images/pounded_tuna.png",
+    'image': "assets/img/pounded_tuna.png",
     'description': "Tuna cincang segar",
     'category': "Makan"
   },
   {
     'title': "Salmon with Avocado",
     'price': 21000,
-    'image': "assets/images/salmon_with_avocado.png",
+    'image': "assets/img/salmon_with_avocado.png",
     'description': "Salmon dengan alpukat creamy",
     'category': "Makan"
   },
   {
     'title': "Scallop",
     'price': 21000,
-    'image': "assets/images/scallop.png",
+    'image': "assets/img/scallop.png",
     'description': "Kerang segar dari laut utara",
     'category': "Makan"
   },
   {
     'title': "Shrimp",
     'price': 11000,
-    'image': "assets/images/shrimp.png",
+    'image': "assets/img/shrimp.png",
     'description': "Udang segar lezat",
     'category': "Makan"
   },
   {
     'title': "Sushi Wrap with Tuna",
     'price': 11000,
-    'image': "assets/images/sushi_wrap_with_tuna.png",
+    'image': "assets/img/sushi_wrap_with_tuna.png",
     'description': "Wrap tuna, daikon, perilla (dine-in only)",
     'category': "Makan"
   },
   {
     'title': "Tuna and Salmon",
     'price': 11000,
-    'image': "assets/images/tuna_and_salmon.png",
+    'image': "assets/img/tuna_and_salmon.png",
     'description': "Dua kombinasi favorit: tuna dan salmon",
     'category': "Makan"
   },
   {
     'title': "Tuna and Shrimp Sushi",
     'price': 11000,
-    'image': "assets/images/tuna_and_shrimp_sushi.png",
+    'image': "assets/img/tuna_and_shrimp_sushi.png",
     'description': "Tuna dan udang segar",
     'category': "Makan"
   },
   {
     'title': "Tuna",
     'price': 11000,
-    'image': "assets/images/tuna.png",
+    'image': "assets/img/tuna.png",
     'description': "Ikan tuna segar",
     'category': "Makan"
   },
   {
     'title': "Salmon Roe",
     'price': 39000,
-    'image': "assets/images/salmon_roe.png",
+    'image': "assets/img/salmon_roe.png",
     'description': "Telur salmon kualitas tinggi",
     'category': "Makan"
   },
   {
     'title': "Shrimp Tempura Roll",
     'price': 19000,
-    'image': "assets/images/shrimp_tempura_roll.png",
+    'image': "assets/img/shrimp_tempura_roll.png",
     'description': "Gulungan udang goreng tempura",
     'category': "Makan"
   },
   {
     'title': "Soy Sauce Ramen",
     'price': 43000,
-    'image': "assets/images/soy_sauce_ramen.png",
+    'image': "assets/img/soy_sauce_ramen.png",
     'description': "Ramen kuah soyu klasik",
     'category': "Makan"
   },
   {
     'title': "Draft Beer",
     'price': 99000,
-    'image': "assets/images/draft_beer.png",
+    'image': "assets/img/draft_beer.png",
     'description': "Bir dingin segar langsung dari tap",
     'category': "Minum"
   },
   {
     'title': "Alcohol-Free Cassis Orange",
     'price': 49000,
-    'image': "assets/images/alcohol_free_cassis_orange.png",
+    'image': "assets/img/alcohol_free_cassis_orange.png",
     'description': "Minuman buah cassis tanpa alkohol",
     'category': "Minum"
   },
   {
     'title': "Iced Coffee",
     'price': 19000,
-    'image': "assets/images/iced_coffee.png",
+    'image': "assets/img/iced_coffee.png",
     'description': "Kopi dingin menyegarkan",
     'category': "Minum"
   },
   {
     'title': "Mango Drink",
     'price': 29000,
-    'image': "assets/images/mango_drink.png",
+    'image': "assets/img/mango_drink.png",
     'description': "Minuman mangga manis",
     'category': "Minum"
   },
   {
     'title': "Masumi Dry Gold (Sake)",
     'price': 94000,
-    'image': "assets/images/masumi_dry_gold_sake.png",
+    'image': "assets/img/masumi_dry_gold_sake.png",
     'description': "Sake khas Jepang, tersedia di Jepang Timur",
     'category': "Minum"
   },
   {
     'title': "Premium Set (5 serving)",
     'price': 915000,
-    'image': "assets/images/premium_set_5_serving.png",
+    'image': "assets/img/premium_set_5_serving.png",
     'description': "Set premium lengkap untuk 5 orang",
     'category': "Bundle"
   },
   {
     'title': "Premium Set (3 serving)",
     'price': 549000,
-    'image': "assets/images/premium_set_3_serving.png",
+    'image': "assets/img/premium_set_3_serving.png",
     'description': "Set premium untuk 3 orang",
     'category': "Bundle"
   },
   {
     'title': "Happy Set (2 servings)",
     'price': 254000,
-    'image': "assets/images/happy_set_2_servings.png",
+    'image': "assets/img/happy_set_2_servings.png",
     'description': "Paket happy untuk berdua",
     'category': "Bundle"
   },
   {
     'title': "Happy Set (one serving)",
     'price': 91000,
-    'image': "assets/images/happy_set_1_serving.png",
+    'image': "assets/img/happy_set_1_serving.png",
     'description': "Set lengkap untuk satu orang",
     'category': "Bundle"
   },

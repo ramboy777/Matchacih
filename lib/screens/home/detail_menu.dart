@@ -25,10 +25,9 @@ class OrderDetailScreen extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 255, 87, 34), // Samakan dengan tema
         foregroundColor: Colors.white,
       ),
-      backgroundColor: const Color(0xFFF8F4EB), // Samakan background
+      backgroundColor: const Color(0xFFF8F4EB), 
       body: Column(
         children: [
-          // 3. Gunakan ListView.builder untuk menampilkan semua item yang dipesan
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(16),
