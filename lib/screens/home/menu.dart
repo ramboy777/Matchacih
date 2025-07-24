@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sushi_app/screens/home/detail_menu.dart';
 import '../../models/menu_card.dart';
 
+class OrderedItem {
+  final String name;
+  final int quantity;
+  final int price;
+
+  OrderedItem({required this.name, required this.quantity, required this.price});
+}
+
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -13,185 +21,203 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   static const Color mainOrange = Color.fromARGB(255, 255, 87, 34);
 
+  final List<String> categories = ["Makan", "Minum", "Bundle"];
+  String selectedCategory = "Makan";
+
   final List<Map<String, dynamic>> menuItems = [
-    {
-      'title': "7-Piece Kappa's Choice Regular Set",
-      'price': 81000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Medium-Fatty Tuna, Tuna, Squid, Whelk, Yellowtail, Salmon, Flounder Fin"
-    },
-    {
-      'title': "7-Piece Sushi",
-      'price': 192000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Bonito, Abalone, Octopus, Urchin, Shrimp, Sea Eel"
-    },
-    {
-      'title': "Albacore Tuna",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Ikan Tuna Albacore segar"
-    },
-    {
-      'title': "Bering Sea Cockle",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Kerang manis saus kecap dan wijen"
-    },
-    {
-      'title': "Fresh Octopus",
-      'price': 19000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Gurita segar dengan cita rasa otentik"
-    },
-    {
-      'title': "Japanese Omelette",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Telur gulung khas Jepang"
-    },
-    {
-      'title': "Popular Platter",
-      'price': 89000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Tuna, Albacore, Yellowtail, Salmon, Shrimp, Whelk"
-    },
-    {
-      'title': "Pounded Tuna",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Tuna cincang segar"
-    },
-    {
-      'title': "Salmon with Avocado",
-      'price': 21000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Salmon dengan alpukat creamy"
-    },
-    {
-      'title': "Scallop",
-      'price': 21000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Kerang segar dari laut utara"
-    },
-    {
-      'title': "Shrimp",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Udang segar lezat"
-    },
-    {
-      'title': "Sushi Wrap with Tuna",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Wrap tuna, daikon, perilla (dine-in only)"
-    },
-    {
-      'title': "Tuna and Salmon",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Dua kombinasi favorit: tuna dan salmon"
-    },
-    {
-      'title': "Tuna and Shrimp Sushi",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Tuna dan udang segar"
-    },
-    {
-      'title': "Tuna",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Ikan tuna segar"
-    },
-    {
-      'title': "Salmon Roe",
-      'price': 39000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Telur salmon kualitas tinggi"
-    },
-    {
-      'title': "Shrimp Tempura Roll",
-      'price': 19000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Gulungan udang goreng tempura"
-    },
-    {
-      'title': "Soy Sauce Ramen",
-      'price': 43000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Ramen kuah soyu klasik"
-    },
-    {
-      'title': "Hakata Tonkotsu Ramen",
-      'price': 59000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Ramen Hakata dengan acar pedas"
-    },
-    {
-      'title': "Seaweed Root and Natto",
-      'price': 11000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Akar rumput laut dengan natto"
-    },
-    {
-      'title': "Draft Beer",
-      'price': 99000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Bir dingin segar langsung dari tap"
-    },
-    {
-      'title': "Alcohol-Free Cassis Orange",
-      'price': 49000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Minuman buah cassis tanpa alkohol"
-    },
-    {
-      'title': "Iced Coffee",
-      'price': 19000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Kopi dingin menyegarkan"
-    },
-    {
-      'title': "Mango Drink",
-      'price': 29000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Minuman mangga manis"
-    },
-    {
-      'title': "Masumi Dry Gold (Sake)",
-      'price': 94000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Sake khas Jepang, tersedia di Jepang Timur"
-    },
-    {
-      'title': "Premium Set (5 serving)",
-      'price': 915000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Set premium lengkap untuk 5 orang"
-    },
-    {
-      'title': "Premium Set (3 serving)",
-      'price': 549000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Set premium untuk 3 orang"
-    },
-    {
-      'title': "Happy Set (2 servings)",
-      'price': 254000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Paket happy untuk berdua"
-    },
-    {
-      'title': "Happy Set (one serving)",
-      'price': 91000,
-      'image': "https://via.placeholder.com/150",
-      'description': "Set lengkap untuk satu orang"
-    },
+     {
+    'title': "7-Piece Kappa's Choice Regular Set",
+    'price': 81000,
+    'image': "assets/images/7_piece_kappas_choice_regular_set.png",
+    'description': "Medium-Fatty Tuna, Tuna, Squid, Whelk, Yellowtail, Salmon, Flounder Fin",
+    'category': "Bundle"
+  },
+  {
+    'title': "7-Piece Sushi",
+    'price': 192000,
+    'image': "assets/images/7_piece_sushi.png",
+    'description': "Bonito, Abalone, Octopus, Urchin, Shrimp, Sea Eel",
+    'category': "Bundle"
+  },
+  {
+    'title': "Albacore Tuna",
+    'price': 11000,
+    'image': "assets/images/albacore_tuna.png",
+    'description': "Ikan Tuna Albacore segar",
+    'category': "Makan"
+  },
+  {
+    'title': "Bering Sea Cockle",
+    'price': 11000,
+    'image': "assets/images/bering_sea_cockle.png",
+    'description': "Kerang manis saus kecap dan wijen",
+    'category': "Makan"
+  },
+  {
+    'title': "Fresh Octopus",
+    'price': 19000,
+    'image': "assets/images/fresh_octopus.png",
+    'description': "Gurita segar dengan cita rasa otentik",
+    'category': "Makan"
+  },
+  {
+    'title': "Japanese Omelette",
+    'price': 11000,
+    'image': "assets/images/japanese_omelette.png",
+    'description': "Telur gulung khas Jepang",
+    'category': "Makan"
+  },
+  {
+    'title': "Popular Platter",
+    'price': 89000,
+    'image': "assets/images/popular_platter.png",
+    'description': "Tuna, Albacore, Yellowtail, Salmon, Shrimp, Whelk",
+    'category': "Bundle"
+  },
+  {
+    'title': "Pounded Tuna",
+    'price': 11000,
+    'image': "assets/images/pounded_tuna.png",
+    'description': "Tuna cincang segar",
+    'category': "Makan"
+  },
+  {
+    'title': "Salmon with Avocado",
+    'price': 21000,
+    'image': "assets/images/salmon_with_avocado.png",
+    'description': "Salmon dengan alpukat creamy",
+    'category': "Makan"
+  },
+  {
+    'title': "Scallop",
+    'price': 21000,
+    'image': "assets/images/scallop.png",
+    'description': "Kerang segar dari laut utara",
+    'category': "Makan"
+  },
+  {
+    'title': "Shrimp",
+    'price': 11000,
+    'image': "assets/images/shrimp.png",
+    'description': "Udang segar lezat",
+    'category': "Makan"
+  },
+  {
+    'title': "Sushi Wrap with Tuna",
+    'price': 11000,
+    'image': "assets/images/sushi_wrap_with_tuna.png",
+    'description': "Wrap tuna, daikon, perilla (dine-in only)",
+    'category': "Makan"
+  },
+  {
+    'title': "Tuna and Salmon",
+    'price': 11000,
+    'image': "assets/images/tuna_and_salmon.png",
+    'description': "Dua kombinasi favorit: tuna dan salmon",
+    'category': "Makan"
+  },
+  {
+    'title': "Tuna and Shrimp Sushi",
+    'price': 11000,
+    'image': "assets/images/tuna_and_shrimp_sushi.png",
+    'description': "Tuna dan udang segar",
+    'category': "Makan"
+  },
+  {
+    'title': "Tuna",
+    'price': 11000,
+    'image': "assets/images/tuna.png",
+    'description': "Ikan tuna segar",
+    'category': "Makan"
+  },
+  {
+    'title': "Salmon Roe",
+    'price': 39000,
+    'image': "assets/images/salmon_roe.png",
+    'description': "Telur salmon kualitas tinggi",
+    'category': "Makan"
+  },
+  {
+    'title': "Shrimp Tempura Roll",
+    'price': 19000,
+    'image': "assets/images/shrimp_tempura_roll.png",
+    'description': "Gulungan udang goreng tempura",
+    'category': "Makan"
+  },
+  {
+    'title': "Soy Sauce Ramen",
+    'price': 43000,
+    'image': "assets/images/soy_sauce_ramen.png",
+    'description': "Ramen kuah soyu klasik",
+    'category': "Makan"
+  },
+  {
+    'title': "Draft Beer",
+    'price': 99000,
+    'image': "assets/images/draft_beer.png",
+    'description': "Bir dingin segar langsung dari tap",
+    'category': "Minum"
+  },
+  {
+    'title': "Alcohol-Free Cassis Orange",
+    'price': 49000,
+    'image': "assets/images/alcohol_free_cassis_orange.png",
+    'description': "Minuman buah cassis tanpa alkohol",
+    'category': "Minum"
+  },
+  {
+    'title': "Iced Coffee",
+    'price': 19000,
+    'image': "assets/images/iced_coffee.png",
+    'description': "Kopi dingin menyegarkan",
+    'category': "Minum"
+  },
+  {
+    'title': "Mango Drink",
+    'price': 29000,
+    'image': "assets/images/mango_drink.png",
+    'description': "Minuman mangga manis",
+    'category': "Minum"
+  },
+  {
+    'title': "Masumi Dry Gold (Sake)",
+    'price': 94000,
+    'image': "assets/images/masumi_dry_gold_sake.png",
+    'description': "Sake khas Jepang, tersedia di Jepang Timur",
+    'category': "Minum"
+  },
+  {
+    'title': "Premium Set (5 serving)",
+    'price': 915000,
+    'image': "assets/images/premium_set_5_serving.png",
+    'description': "Set premium lengkap untuk 5 orang",
+    'category': "Bundle"
+  },
+  {
+    'title': "Premium Set (3 serving)",
+    'price': 549000,
+    'image': "assets/images/premium_set_3_serving.png",
+    'description': "Set premium untuk 3 orang",
+    'category': "Bundle"
+  },
+  {
+    'title': "Happy Set (2 servings)",
+    'price': 254000,
+    'image': "assets/images/happy_set_2_servings.png",
+    'description': "Paket happy untuk berdua",
+    'category': "Bundle"
+  },
+  {
+    'title': "Happy Set (one serving)",
+    'price': 91000,
+    'image': "assets/images/happy_set_1_serving.png",
+    'description': "Set lengkap untuk satu orang",
+    'category': "Bundle"
+  },
   ];
 
-
   final Map<String, int> cart = {};
+  
 
   void _addToCart(String title) {
     setState(() {
@@ -224,62 +250,72 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final filteredItems =
+        menuItems.where((item) => item['category'] == selectedCategory).toList();
+
     return Scaffold(
       backgroundColor: const Color(0xFFF8F4EB),
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: mainOrange,
         elevation: 6,
         shadowColor: Colors.black.withOpacity(0.3),
         title: const Text(
-          "Menu Sushi",
+          "Menu",
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.2,
           ),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Stack(
-              alignment: Alignment.topRight,
-              children: [
-                const Icon(Icons.shopping_cart),
-                if (_totalItemInCart() > 0)
-                  CircleAvatar(
-                    radius: 8,
-                    backgroundColor: Colors.deepOrange,
-                    child: Text(
-                      '${_totalItemInCart()}',
-                      style: const TextStyle(color: Colors.white, fontSize: 10),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
+        iconTheme: const IconThemeData(color: Colors.white), // Untuk tombol back jika ada
       ),
       body: Column(
         children: [
+          // Kategori
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+            child: Row(
+              children: categories.map((category) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedCategory = category;
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: selectedCategory == category ? Colors.white : Colors.black87,
+                      backgroundColor: selectedCategory == category
+                          ? mainOrange
+                          : Colors.grey[300],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    ),
+                    child: Text(category),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+          // Daftar Menu
           Expanded(
-            child: GridView.builder(
+            child: ListView.builder(
               padding: const EdgeInsets.all(12),
-              itemCount: menuItems.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.68,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-              ),
+              itemCount: filteredItems.length,
               itemBuilder: (context, index) {
-                final item = menuItems[index];
-                final title = item['title'];
+                final item = filteredItems[index];
+                final title = item['title'] as String;
                 final quantity = cart[title] ?? 0;
 
                 return MenuCard(
-                  title: item['title'],
-                  price: item['price'],
-                  image: item['image'],
-                  description: item['description'],
+                  title: title,
+                  price: item['price'] as int,
+                  image: item['image'] as String,
+                  description: item['description'] as String,
                   quantity: quantity,
                   onAdd: () => _addToCart(title),
                   onRemove: () => _removeFromCart(title),
@@ -289,43 +325,83 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           if (_totalItemInCart() > 0)
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
                 color: Colors.white,
-                border: Border(top: BorderSide(color: Colors.grey.shade300)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 0,
+                    blurRadius: 10,
+                    offset: const Offset(0, -5),
+                  ),
+                ],
+                border: Border(top: BorderSide(color: Colors.grey.shade200)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Total: Rp ${_totalHarga().toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => '.')}",
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${_totalItemInCart()} produk",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Text(
+                        "Rp ${_totalHarga().toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => '.')}",
+                        style: const TextStyle(
+                          fontSize: 16, 
+                          fontWeight: FontWeight.bold,
+                          color: mainOrange
+                        ),
+                      ),
+                    ],
+                  ),
                   ElevatedButton(
                     onPressed: () {
-                      // Ambil satu menu pertama dari keranjang
-                      final firstTitleInCart = cart.keys.first;
-                      final selectedMenu = menuItems.firstWhere((item) => item['title'] == firstTitleInCart);
-
+                      final orderedItems = menuItems
+                          .where((item) => cart[item['title']] != null && cart[item['title']]! > 0)
+                          .map((item) {
+                            return OrderedItem(
+                              name: item['title'] as String,
+                              quantity: cart[item['title']]!,
+                              price: item['price'] as int,
+                            );
+                          }).toList();
+                      
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => OrderDetailScreen(selectedMenu: selectedMenu),
+                          builder: (context) => OrderDetailScreen(orderedItems: orderedItems),
                         ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepOrange,
+                      backgroundColor: mainOrange,
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                      child: Text("Pesan Sekarang", style: TextStyle(fontSize: 16)),
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("Cek Keranjang", style: TextStyle(fontSize: 16)),
+                          SizedBox(width: 8),
+                          Icon(Icons.arrow_forward_ios, size: 16),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-            )
+            ),
         ],
       ),
     );
