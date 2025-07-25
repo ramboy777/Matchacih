@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_app/screens/home/transaksi.dart';
 import 'package:sushi_app/screens/home/transaksi_cash.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -25,21 +24,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   void initState() {
     super.initState();
-    // Hitung semua biaya saat halaman pertama kali dibuka
     subtotal = widget.subtotal;
-    tax = (subtotal * 0.11).round(); // PPN 11% dari subtotal
-    admin = 5000; // Biaya admin tetap
+    tax = (subtotal * 0.11).round();
+    admin = 5000; 
     total = subtotal + tax + admin;
   }
   
-  // Helper function untuk format harga
   String _formatPrice(int price) {
     return price.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (m) => '.');
   }
 
   @override
   Widget build(BuildContext context) {
-    // Tema warna utama agar konsisten
     const Color mainColor = Color.fromARGB(255, 255, 87, 34);
 
     return Scaffold(
@@ -65,12 +61,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Metode Pembayaran
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildPaymentMethodButton('Cash', mainColor),
-                // Anda bisa menambahkan metode lain di sini, contoh: 'E-Wallet'
                 _buildPaymentMethodButton('Scan', mainColor),
               ],
             ),
@@ -94,7 +88,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
 
             const Spacer(),
-
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: mainColor,
@@ -103,7 +96,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
               onPressed: () {
-                // Validasi input
                 if (nameController.text.isEmpty || tableController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Harap lengkapi Nama dan Nomor Meja")),
@@ -111,15 +103,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   return;
                 }
 
-                // 2. Logika yang sudah diperbarui
                 if (selectedMethod == 'Cash') {
-                  // Jika 'Cash', arahkan ke halaman TransaksiCash
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => const TransaksiCash()),
                   );
                 } else {
-                  // Untuk metode lain, tampilkan dialog sukses
                   showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
@@ -165,7 +154,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
   }
 
-  // Helper widget untuk baris rincian harga
   Widget buildRow(String label, int value, {bool isBold = false, Color? color}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),

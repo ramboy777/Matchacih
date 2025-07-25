@@ -267,11 +267,10 @@ class _MenuScreenState extends State<MenuScreen> {
             letterSpacing: 1.2,
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white), // Untuk tombol back jika ada
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(
         children: [
-          // Kategori
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
@@ -301,7 +300,6 @@ class _MenuScreenState extends State<MenuScreen> {
               }).toList(),
             ),
           ),
-          // Daftar Menu
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(12),

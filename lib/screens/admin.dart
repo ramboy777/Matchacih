@@ -79,7 +79,7 @@ class _AdminMenuScreenState extends State<AdminMenuScreen> {
                     if (mounted) {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Menu berhasil ditambahkan!')));
-                      _fetchMenu(); // Muat ulang daftar menu
+                      _fetchMenu(); 
                     }
                   } catch (e) {
                      if (mounted) {
@@ -97,7 +97,6 @@ class _AdminMenuScreenState extends State<AdminMenuScreen> {
   }
 
   Future<void> _deleteMenuItem(int id) async {
-    // Tampilkan dialog konfirmasi
     final shouldDelete = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(

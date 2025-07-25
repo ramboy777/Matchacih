@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:sushi_app/screens/home/detail_transaksi.dart';
-import 'package:sushi_app/screens/home/menu.dart'; // Impor untuk mengakses class OrderedItem
-// import 'transaksi.dart'; // Pastikan file ini ada untuk halaman pembayaran
+import 'package:sushi_app/screens/home/menu.dart'; 
 
 class OrderDetailScreen extends StatelessWidget {
-  // 1. Hapus `selectedMenu` dan gunakan `orderedItems` yang dikirim dari MenuScreen
   final List<OrderedItem> orderedItems;
 
   const OrderDetailScreen({super.key, required this.orderedItems});
 
-  // Helper function untuk format harga agar lebih rapi
   String _formatPrice(int price) {
     return price.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (m) => '.');
   }
 
   @override
   Widget build(BuildContext context) {
-    // 2. Hitung total harga dari semua item di keranjang
     int totalPrice = orderedItems.fold(0, (sum, item) => sum + (item.price * item.quantity));
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Rincian Pesanan"),
-        backgroundColor: const Color.fromARGB(255, 255, 87, 34), // Samakan dengan tema
+        backgroundColor: const Color.fromARGB(255, 255, 87, 34), 
         foregroundColor: Colors.white,
       ),
       backgroundColor: const Color(0xFFF8F4EB), 
@@ -55,7 +51,6 @@ class OrderDetailScreen extends StatelessWidget {
             ),
           ),
 
-          // 4. Tampilkan ringkasan total pembayaran di bagian bawah
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -94,14 +89,11 @@ class OrderDetailScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () {
-                    // 5. Kirim data pesanan ke halaman Transaksi
-                    // Anda mungkin perlu menyesuaikan halaman `Transaksi` untuk menerima data ini
                     Navigator.push(
                        context,
                        MaterialPageRoute(builder: (_) => PaymentScreen(subtotal: totalPrice,)),
                      );
                     
-                    // Untuk sementara, jika halaman Transaksi belum siap:
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Halaman Pembayaran belum diimplementasikan.'))
                     );
